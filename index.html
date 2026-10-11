@@ -1,1 +1,62 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Open AI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Arial, sans-serif;
+      background: #080d1b; color: white;
+    }
+    header {
+      padding: 20px; border-bottom: 1px solid #26304a;
+      font-size: 22px; font-weight: bold;
+    }
+    main {
+      max-width: 850px; margin: 70px auto; padding: 20px;
+      text-align: center;
+    }
+    h1 { font-size: clamp(32px, 7vw, 54px); }
+    h1 span { color: #8b7cff; }
+    p { color: #aeb8d0; line-height: 1.7; }
+    textarea {
+      width: 100%; min-height: 140px; margin-top: 20px;
+      padding: 18px; border-radius: 14px;
+      background: #111a2d; color: white;
+      border: 1px solid #394664; font-size: 16px;
+    }
+    button {
+      margin-top: 12px; padding: 14px 22px;
+      border: 0; border-radius: 10px;
+      background: #7865f5; color: white;
+      font-size: 16px; font-weight: bold;
+    }
+    #result { white-space: pre-wrap; }
+    footer { text-align: center; padding: 25px; color: #8490aa; }
+  </style>
+</head>
+<body>
+  <header>☁ Cloud Open AI</header>
+  <main>
+    <p>YOUR INDEPENDENT AI WORKSPACE</p>
+    <h1>Imagine it.<br><span>Build it with AI.</span></h1>
+    <p>Explore ideas for websites, apps and digital products in one workspace.</p>
+    <textarea id="prompt" placeholder="Describe the website or app you want to build..."></textarea>
+    <br>
+    <button onclick="startProject()">Start Building →</button>
+    <p id="result" aria-live="polite"></p>
+  </main>
+  <footer>Cloud Open AI · Independent project · 2026</footer>
+  <script>
+    function startProject() {
+      const prompt = document.getElementById('prompt').value.trim();
+      const result = document.getElementById('result');
+      result.textContent = prompt
+        ? 'Your idea: ' + prompt + '\n\nThis starter interface is ready. AI generation will work after a secure AI backend is connected.'
+        : 'Please describe your website or app idea first.';
+    }
+  </script>
+</body>
+</html>
