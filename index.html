@@ -298,3 +298,235 @@ document.getElementById("ai-send").addEventListener("click", async () => {
 });
 </script>
 
+<section id="gemini-settings" style="max-width:600px;margin:30px auto;padding:20px;border:1px solid #ddd;border-radius:16px;font-family:Arial,sans-serif">
+  <h2>⚙️ AI API Settings</h2>
+  <p>Connect your Cloud Open AI workspace to Google Gemini.</p>
+
+  <label for="gemini-endpoint">Backend URL</label>
+  <input
+    id="gemini-endpoint"
+    type="url"
+    value="https://weathered-cloud-open-ai-apiheart-d9ca.sanjaysanjaykasana239.workers.dev"
+    style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px"
+  >
+
+  <button id="gemini-test" type="button" style="padding:12px 18px;cursor:pointer">
+    Test Gemini Connection
+  </button>
+
+  <p id="gemini-status" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+document.getElementById("gemini-test").addEventListener("click", async () => {
+  const endpoint = document.getElementById("gemini-endpoint").value.trim().replace(/\/+$/, "");
+  const status = document.getElementById("gemini-status");
+  const button = document.getElementById("gemini-test");
+
+  if (!endpoint.startsWith("https://")) {
+    status.textContent = "Please enter a valid HTTPS backend URL.";
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "Checking backend...";
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: "Reply with exactly: Gemini connection successful."
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Connection failed");
+    }
+
+    status.textContent = "Connected: " + (data.answer || "Backend responded.");
+  } catch (error) {
+    status.textContent =
+      "Not connected yet. Check the backend deployment, API Secret, and Gemini model access.";
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
+
+<section id="gemini-settings" style="max-width:600px;margin:30px auto;padding:20px;border:1px solid #ddd;border-radius:16px;font-family:Arial,sans-serif">
+  <h2>⚙️ AI API Settings</h2>
+  <p>Connect your Cloud Open AI workspace to Google Gemini.</p>
+
+  <label for="gemini-endpoint">Backend URL</label>
+  <input
+    id="gemini-endpoint"
+    type="url"
+    value="https://weathered-cloud-open-ai-apiheart-d9ca.sanjaysanjaykasana239.workers.dev"
+    style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px"
+  >
+
+  <button id="gemini-test" type="button" style="padding:12px 18px;cursor:pointer">
+    Test Gemini Connection
+  </button>
+
+  <p id="gemini-status" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+document.getElementById("gemini-test").addEventListener("click", async () => {
+  const endpoint = document.getElementById("gemini-endpoint").value.trim().replace(/\/+$/, "");
+  const status = document.getElementById("gemini-status");
+  const button = document.getElementById("gemini-test");
+
+  if (!endpoint.startsWith("https://")) {
+    status.textContent = "Please enter a valid HTTPS backend URL.";
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "Checking backend...";
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: "Reply with exactly: Gemini connection successful."
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Connection failed");
+    }
+
+    status.textContent = "Connected: " + (data.answer || "Backend responded.");
+  } catch (error) {
+    status.textContent =
+      "Not connected yet. Check the backend deployment, API Secret, and Gemini model access.";
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
+
+<section id="gemini-settings" style="max-width:600px;margin:30px auto;padding:20px;border:1px solid #ddd;border-radius:16px;font-family:Arial,sans-serif">
+  <h2>⚙️ AI API Settings</h2>
+  <p>Connect your Cloud Open AI workspace to Google Gemini.</p>
+
+  <label for="gemini-endpoint">Backend URL</label>
+  <input
+    id="gemini-endpoint"
+    type="url"
+    value="https://weathered-cloud-open-ai-apiheart-d9ca.sanjaysanjaykasana239.workers.dev"
+    style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px"
+  >
+
+  <button id="gemini-test" type="button" style="padding:12px 18px;cursor:pointer">
+    Test Gemini Connection
+  </button>
+
+  <p id="gemini-status" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+document.getElementById("gemini-test").addEventListener("click", async () => {
+  const endpoint = document.getElementById("gemini-endpoint").value.trim().replace(/\/+$/, "");
+  const status = document.getElementById("gemini-status");
+  const button = document.getElementById("gemini-test");
+
+  if (!endpoint.startsWith("https://")) {
+    status.textContent = "Please enter a valid HTTPS backend URL.";
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "Checking backend...";
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: "Reply with exactly: Gemini connection successful."
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Connection failed");
+    }
+
+    status.textContent = "Connected: " + (data.answer || "Backend responded.");
+  } catch (error) {
+    status.textContent =
+      "Not connected yet. Check the backend deployment, API Secret, and Gemini model access.";
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
+
+<section id="gemini-settings" style="max-width:600px;margin:30px auto;padding:20px;border:1px solid #ddd;border-radius:16px;font-family:Arial,sans-serif">
+  <h2>⚙️ AI API Settings</h2>
+  <p>Connect your Cloud Open AI workspace to Google Gemini.</p>
+
+  <label for="gemini-endpoint">Backend URL</label>
+  <input
+    id="gemini-endpoint"
+    type="url"
+    value="https://weathered-cloud-open-ai-apiheart-d9ca.sanjaysanjaykasana239.workers.dev"
+    style="box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px"
+  >
+
+  <button id="gemini-test" type="button" style="padding:12px 18px;cursor:pointer">
+    Test Gemini Connection
+  </button>
+
+  <p id="gemini-status" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+document.getElementById("gemini-test").addEventListener("click", async () => {
+  const endpoint = document.getElementById("gemini-endpoint").value.trim().replace(/\/+$/, "");
+  const status = document.getElementById("gemini-status");
+  const button = document.getElementById("gemini-test");
+
+  if (!endpoint.startsWith("https://")) {
+    status.textContent = "Please enter a valid HTTPS backend URL.";
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "Checking backend...";
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: "Reply with exactly: Gemini connection successful."
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Connection failed");
+    }
+
+    status.textContent = "Connected: " + (data.answer || "Backend responded.");
+  } catch (error) {
+    status.textContent =
+      "Not connected yet. Check the backend deployment, API Secret, and Gemini model access.";
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
+
