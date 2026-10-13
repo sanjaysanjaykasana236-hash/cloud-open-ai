@@ -1,62 +1,149 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloud Open AI</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: Arial, sans-serif;
-      background: #080d1b; color: white;
-    }
-    header {
-      padding: 20px; border-bottom: 1px solid #26304a;
-      font-size: 22px; font-weight: bold;
-    }
-    main {
-      max-width: 850px; margin: 70px auto; padding: 20px;
-      text-align: center;
-    }
-    h1 { font-size: clamp(32px, 7vw, 54px); }
-    h1 span { color: #8b7cff; }
-    p { color: #aeb8d0; line-height: 1.7; }
-    textarea {
-      width: 100%; min-height: 140px; margin-top: 20px;
-      padding: 18px; border-radius: 14px;
-      background: #111a2d; color: white;
-      border: 1px solid #394664; font-size: 16px;
-    }
-    button {
-      margin-top: 12px; padding: 14px 22px;
-      border: 0; border-radius: 10px;
-      background: #7865f5; color: white;
-      font-size: 16px; font-weight: bold;
-    }
-    #result { white-space: pre-wrap; }
-    footer { text-align: center; padding: 25px; color: #8490aa; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<title>Cloud Open AI — Build Anything</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080d1b;color:#f5f6ff;font-family:Arial,sans-serif}
+header{padding:18px 6%;border-bottom:1px solid #27314b;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:21px;font-weight:bold}
+.logo span{color:#9987ff}
+.tag{font-size:12px;color:#b5bdd4}
+main{max-width:900px;margin:65px auto;padding:20px;text-align:center}
+.pill{display:inline-block;padding:8px 13px;border:1px solid #443b78;border-radius:30px;color:#c9bdff;font-size:12px}
+h1{font-size:clamp(34px,7vw,58px);line-height:1.12;margin:24px 0 16px}
+h1 span{color:#9987ff}
+.intro{color:#aeb8d0;line-height:1.7;max-width:620px;margin:0 auto 30px}
+.tabs{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:25px 0}
+.tabs button{background:#141c30;color:#dce2f5;border:1px solid #34405d}
+button{cursor:pointer;border-radius:10px;padding:12px 17px;font-size:14px;font-weight:bold}
+.tabs button.active,.primary{background:#7865f5;color:white;border:1px solid #7865f5}
+.panel{background:#10182a;border:1px solid #34405d;border-radius:16px;padding:16px;text-align:left}
+label{display:block;margin:5px 0 12px;font-size:14px;color:#dce2f5}
+textarea{width:100%;min-height:145px;resize:vertical;background:#080d1b;color:white;border:1px solid #394664;border-radius:10px;padding:15px;font:16px/1.6 Arial;outline-color:#9987ff}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.secondary{background:#202a40;color:white;border:1px solid #394664}
+#result{display:none;margin-top:20px;text-align:left;background:#10182a;border:1px solid #34405d;border-radius:14px;padding:18px;overflow-wrap:anywhere;line-height:1.7}
+#result pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#d9d2ff}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:35px;text-align:left}
+.feature{background:#10182a;border:1px solid #29344d;border-radius:12px;padding:16px}
+.feature p{font-size:13px;color:#aeb8d0;line-height:1.6}
+footer{text-align:center;padding:30px;color:#8994ad;font-size:12px}
+@media(max-width:600px){main{margin:35px auto;padding:16px}.features{grid-template-columns:1fr}header{padding:16px}.tag{font-size:10px}}
+</style>
 </head>
 <body>
-  <header>☁ Cloud Open AI</header>
-  <main>
-    <p>YOUR INDEPENDENT AI WORKSPACE</p>
-    <h1>Imagine it.<br><span>Build it with AI.</span></h1>
-    <p>Explore ideas for websites, apps and digital products in one workspace.</p>
-    <textarea id="prompt" placeholder="Describe the website or app you want to build..."></textarea>
-    <br>
-    <button onclick="startProject()">Start Building →</button>
-    <p id="result" aria-live="polite"></p>
-  </main>
-  <footer>Cloud Open AI · Independent project · 2026</footer>
-  <script>
-    function startProject() {
-      const prompt = document.getElementById('prompt').value.trim();
-      const result = document.getElementById('result');
-      result.textContent = prompt
-        ? 'Your idea: ' + prompt + '\n\nThis starter interface is ready. AI generation will work after a secure AI backend is connected.'
-        : 'Please describe your website or app idea first.';
+<header>
+  <div class="logo">☁ Cloud <span>Open AI</span></div>
+  <div class="tag">YOUR AI WORKSPACE</div>
+</header>
+
+<main>
+  <div class="pill">✦ YOUR IDEAS, YOUR PROJECTS</div>
+  <h1>Imagine it.<br><span>Build it with AI.</span></h1>
+  <p class="intro">Turn your ideas into website concepts, app plans and code projects. Start by describing what you want to create.</p>
+
+  <div class="tabs">
+    <button class="active" data-mode="website" onclick="chooseMode('website',this)">🌐 Website</button>
+    <button data-mode="app" onclick="chooseMode('app',this)">📱 App</button>
+    <button data-mode="chat" onclick="chooseMode('chat',this)">✦ AI Chat</button>
+  </div>
+
+  <section class="panel">
+    <label id="promptLabel" for="prompt">Describe the website you want to build</label>
+    <textarea id="prompt" placeholder="Example: Create a modern online store with products, prices and a contact page..."></textarea>
+    <div class="actions">
+      <button class="primary" onclick="startProject()">Create Project →</button>
+      <button class="secondary" onclick="clearProject()">Clear</button>
+    </div>
+  </section>
+
+  <section id="result" aria-live="polite"></section>
+
+  <section class="features">
+    <div class="feature"><strong>🌐 Website Builder</strong><p>Plan responsive websites and generate starter code.</p></div>
+    <div class="feature"><strong>📱 App Planner</strong><p>Organize app screens, features and development steps.</p></div>
+    <div class="feature"><strong>✦ AI Workspace</strong><p>A starting point for connecting an AI assistant.</p></div>
+  </section>
+</main>
+
+<footer>Cloud Open AI · Independent AI platform concept</footer>
+
+<script>
+let currentMode = "website";
+
+function chooseMode(mode, button) {
+  currentMode = mode;
+  document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+  button.classList.add("active");
+
+  const labels = {
+    website: "Describe the website you want to build",
+    app: "Describe the app you want to create",
+    chat: "What would you like help with?"
+  };
+
+  document.getElementById("promptLabel").textContent = labels[mode];
+  document.getElementById("prompt").placeholder =
+    mode === "website" ? "Example: Create a business website with services and contact details..." :
+    mode === "app" ? "Example: Create a shopping app with products, cart and user accounts..." :
+    "Type your question or idea here...";
+}
+
+function startProject() {
+  const prompt = document.getElementById("prompt").value.trim();
+  const result = document.getElementById("result");
+
+  result.style.display = "block";
+
+  if (!prompt) {
+    result.textContent = "Please describe your idea first.";
+    return;
+  }
+
+  const title = {
+    website: "Website Project",
+    app: "App Project",
+    chat: "AI Chat"
+  }[currentMode];
+
+  result.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = title + " — Your Brief";
+  result.appendChild(heading);
+
+  const description = document.createElement("p");
+  description.textContent = "Your idea: " + prompt;
+  result.appendChild(description);
+
+  const note = document.createElement("p");
+  note.textContent = "This is the initial interface prototype. Live AI responses and automatic code generation are not connected yet. The next step is to add a secure backend and connect an AI API.";
+  result.appendChild(note);
+
+  const copyButton = document.createElement("button");
+  copyButton.className = "secondary";
+  copyButton.textContent = "Copy Project Brief";
+  copyButton.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(title + "\n" + prompt);
+      copyButton.textContent = "Copied!";
+    } catch {
+      copyButton.textContent = "Copy unavailable in this browser";
     }
-  </script>
+  };
+  result.appendChild(copyButton);
+}
+
+function clearProject() {
+  document.getElementById("prompt").value = "";
+  document.getElementById("result").style.display = "none";
+}
+</script>
 </body>
 </html>
+
